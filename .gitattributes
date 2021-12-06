@@ -1,7 +1,7 @@
 
-*.csharp linguist-detectable=false
-*.java linguist-detectable=false  
-*.js linguist-detectable=false  
-*.html linguist-detectable=false  
-*.xml linguist-detectable=false    
-*.python linguist-detectable=true    
+*.csharp linguist-detectable=False
+*.java linguist-detectable=False  
+*.js linguist-detectable=False  
+*.html linguist-detectable=False  
+*.xml linguist-detectable=False    
+*.python3 linguist-detectable=True    
