@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block header %}fixed-top header-inner-pages{% endblock %}
+{% block title%} Delete A Blog Post {% endblock %}
+{% load static %}
+
+    {% block content %}
+    <main id="main">
+    
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <ol style="padding-top: 9px;"></ol>
+
+            
+            <h1>Delete A Blog Post!</h1>
+
+        </div>
+        </section><!-- End Breadcrumbs -->
+
+        <section class="inner-page">
+        <div class="container"><br>
+            <h4>Delete: {{ post.title }}</h4>
+            <div class="form-control " style="width: 420px;">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <strong><h5>Are you sure? This action can't be undone!</h5></strong>
+                    
+                    <button class="btn btn-primary">
+                        <a href="{% url 'bPosts' post.pk %}" style="color: white;">NO</a>
+                        <i class="bi bi-arrow-left-circle"></i>
+                    </button>
+                    <button class="btn btn-danger">
+                        YES
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </form>
+            </div>
+        
+        </div>
+        </section>
+
+    </main><!-- End #main -->
+{% endblock %}
