@@ -71,6 +71,27 @@
         padding: .2em .3em;
 
       }
+      .hiddn{
+        background: rgb(36, 35, 35);
+        color: rgb(251, 253, 253);
+        font-size: 10px;
+        padding: 10px 10px;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        opacity: 0;
+        position: absolute;
+        top: 30px;
+        right: 5px;
+        pointer-events: none;
+        border-radius: 25px;
+        border: 1px solid rgb(203, 208, 211);
+        display: inline-block;
+
+      }
+      .hiddnTxt:hover .hiddn{
+        opacity: 1;
+        pointer-events: auto;
+      }
+      
       
   </style>
   </head>
@@ -85,36 +106,80 @@
         <!-- Uncomment below if you prefer to use an image logo -->
         <a href="{% url 'home' %}" class="logo me-auto"><img src="{% static 'assets/img/Wlogo.png' %}" alt="" class="img-fluid"></a>
 
+        
         <nav id="navbar" class="navbar">
-          <ul>
+          <ul>         
             <li>
+
                 <a class="nav-link scrollto active"  href="{% url 'home' %}">
-                <i style="font-size: 20px;" class="bi bi-house"></i>
-              </a>
-            </li>
+                  <div class="hiddnTxt">
+
+                    <div class="hiddn">HOME</div>
+                    <span>
+
+                      <i style="font-size: 20px;" class="bi bi-house">
+                      </i>
+                    </span>
+  
+                  </div>
+                </a>
+              </li>           
+            {% block menu %}
             <li>
               <a class="nav-link scrollto" href="#about">
-                <i style="font-size: 20px;" class="bi bi-file-earmark-person"></i>
+                <div class="hiddnTxt">
+                  <div class="hiddn">ABOUT US</div>
+                  <span>
+
+                    <i style="font-size: 20px;" class="bi bi-file-earmark-person"></i>
+                  </span>
+
+                </div>
               </a>
             </li>
             <li>
               <a class="nav-link scrollto" href="#services">
-                <i style="font-size: 20px;" class="bi bi-diagram-3"></i>
+                <div class="hiddnTxt">
+                  <div class="hiddn">SERVICES</div>
+                  <span>
+
+                    <i style="font-size: 20px;" class="bi bi-diagram-3"></i>
+                  </span>
+                </div>
               </a>
             </li>
             <li>
               <a class="nav-link   scrollto" href="#portfolio">
-                <i style="font-size: 20px;" class="bi bi-card-list"></i>
+                <div class="hiddnTxt">
+                  <div class="hiddn">PORTFOLIO</div>
+                  <span>
+                    <i style="font-size: 20px;" class="bi bi-card-list"></i>
+                    
+                  </span>
+                </div>
               </a>
             </li>
             <li> 
               <a class="nav-link scrollto" href="#team">
-                <i style="font-size: 20px;" class="bi bi-people"></i>
+                <div class="hiddnTxt">
+                  <div class="hiddn">TEAM</div>
+                  <span>
+                    <i style="font-size: 20px;" class="bi bi-people"></i>
+                    
+                  </span>
+                </div>
               </a>
             </li>
+            {% endblock%}
             <li>
               <a class="nav-link scrollto" href="{% url 'bList' %}">
-                <i style="font-size: 20px;" class="bi bi-file-post"></i>
+                <div class="hiddnTxt">
+                  <div class="hiddn">BLOG</div>
+                  <span>
+                    <i style="font-size: 20px;" class="bi bi-file-post"></i>
+                    
+                  </span>
+                </div>
               </a>
             </li>
             <li class="dropdown"><a href="#">
@@ -137,7 +202,13 @@
             </li>
             <li>
               <a class="nav-link scrollto" href="#contact">
-                <i style="font-size: 20px; " class="bi bi-headset"></i>
+                <div class="hiddnTxt">
+                  <div class="hiddn">CONTACT</div>
+                  <span>
+                    <i style="font-size: 20px; " class="bi bi-headset"></i>
+                    
+                  </span>
+                </div>
               </a>
             </li>
             {% block reg %}
