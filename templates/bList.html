@@ -27,6 +27,7 @@
                         <div class="member-info">
                             <h2>{{post.title}}</h2>
                             <h6>{{post.created_at}}</h6>
+                            <h6>{{post.category}}</h6>
                             <p>{{post.body|truncatewords:14|safe}}</p><br>
                             <h4>by {{post.author}}</h4>
                             <a href="{% url 'bPosts' post.pk %}">Read more...</a>
