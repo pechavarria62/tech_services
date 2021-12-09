@@ -31,7 +31,7 @@
                   {% csrf_token %}
                   
                   <h2>{{post.title}}</h2> <br>
-                  <p>{{post.body}}</p>
+                  <p>{{post.body| safe}}</p>
                   <div class="backAndEdit remove">
                     <button class="btn btn-primary">
                       

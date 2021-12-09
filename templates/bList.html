@@ -21,13 +21,13 @@
         <section id="team" class="inner-page">
             {% csrf_token %}
             {% for post in object_list reversed %}
-                <div class="col-lg-6 pb-1  content team row">
+                <div class="col-lg-6 pb-4  content team row">
                     <div  class="member d-flex align-items-start team section-bg " data-aos="zoom-in" data-aos-delay="100">
                         <div class="pic"><img src="{% static 'assets/img/team/yo.jpeg' %}" class="img-fluid" alt=""></div>
                         <div class="member-info">
                             <h2>{{post.title}}</h2>
                             <h6>{{post.created_at}}</h6>
-                            <p>{{post.body|truncatewords:15}}</p><br>
+                            <p>{{post.body|truncatewords:14|safe}}</p><br>
                             <h4>by {{post.author}}</h4>
                             <a href="{% url 'bPosts' post.pk %}">Read more...</a>
                             <!-- <div class="social">

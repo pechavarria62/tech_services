@@ -9,6 +9,53 @@
 # General
 --------------------------------------------------------------*/
 
+.border{
+  border-radius: 10px;
+  border: 5px solid #333;
+}
+.backAndEdit{
+  display: flex;
+  padding: 15px 30px 0px 0px;
+  color: white;
+  border-top: 1px solid rgb(41, 38, 38);
+  justify-content: space-between;
+  
+}
+.Ratings{
+  display: flex;
+  list-style-type: none;
+  
+}
+.port-info{
+  display: flex;
+  
+}
+.Ratings i {
+  padding: .2em .3em;
+
+}
+.hiddn{
+  background: rgb(36, 35, 35);
+  color: rgb(251, 253, 253);
+  font-size: 10px;
+  padding: 10px 10px;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+  opacity: 0;
+  position: absolute;
+  top: 30px;
+  right: 5px;
+  pointer-events: none;
+  border-radius: 25px;
+  border: 1px solid rgb(203, 208, 211);
+  display: inline-block;
+
+}
+.hiddnTxt:hover .hiddn{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
 .unico{
   background: linear-gradient(80deg, #09009f, #00ff95 48%);
   position: absolute;
@@ -323,9 +370,9 @@ h6 {
   }
 }
 
-/**
+/*---------------------------------
 * Mobile Navigation 
-*/
+-----------------------------------*/
 .mobile-nav-toggle {
   color: #fff;
   font-size: 28px;
@@ -1585,9 +1632,9 @@ section {
   background: #209dd8;
 }
 #footer .footer-top {
-  border-top: 1px solid rgb(41, 38, 38);
+  /* border-top: 1px solid rgb(41, 38, 38); */
   padding: 60px 0 30px 0;
-  background: rgb(213, 207, 207);
+  background: rgb(244, 250, 252);
 }
 #footer .footer-top .footer-contact {
   margin-bottom: 30px;

@@ -15,11 +15,24 @@ class features(models.Model):
     price = models.CharField(max_length=30)
     datails_na = models.CharField(max_length=100)
 
+# create categories
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    # show title
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('bList')
+
+
+# make blog posts
 class post(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     created_at = models.DateTimeField(default=datetime.now, blank=True)
+    category = models.CharField(max_length=200, default="")
 
     # show title
     def __str__(self):
