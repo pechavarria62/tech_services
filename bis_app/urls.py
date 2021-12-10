@@ -3,7 +3,7 @@
 
 from django.urls import path
 from . import views
-from .views import postView, blogView, addPosts, EditPosts, DeletePosts
+from .views import postView, blogView, addPosts, EditPosts, DeletePosts, addCategory, CategoryView
 
 urlpatterns = [
 
@@ -12,6 +12,12 @@ urlpatterns = [
 
     # Return a list of all posts
     path('bList/', postView.as_view(), name='bList'),
+
+    # Add Category 
+    path('categories/', addCategory.as_view(), name='categories'),
+
+    # show posts by category
+    path('pCategories/<str:cats>/', CategoryView, name='pCategories'),
 
     # register user but bitch not working all of a sunden. 
     # path('register/', views.register, name='register'),

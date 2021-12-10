@@ -26,8 +26,8 @@
                         <div class="pic"><img src="{% static 'assets/img/team/yo.jpeg' %}" class="img-fluid" alt=""></div>
                         <div class="member-info">
                             <h2>{{post.title}}</h2>
-                            <h6>{{post.created_at}}</h6>
-                            <h6>{{post.category}}</h6>
+                            <h6>{{post.created_at}} </h6>
+                            <h6><a href="{% url 'pCategories' post.category %}">{{post.category}}</a></h6>
                             <p>{{post.body|truncatewords:14|safe}}</p><br>
                             <h4>by {{post.author}}</h4>
                             <a href="{% url 'bPosts' post.pk %}">Read more...</a>

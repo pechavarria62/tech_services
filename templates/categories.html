@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block header %}fixed-top header-inner-pages{% endblock %}
-{% block title%}Blog Update Editor{% endblock %}
-{% block menu %}{% endblock %}
+{% block title%}Blog Editor{% endblock %}
 {% load static %}
+{% block menu %}{% endblock %}
+
 
     {% block content %}
     <main id="main">
@@ -12,14 +13,13 @@
         <div class="container">
             <ol style="padding-top: 9px;"></ol>
             
-            <h1>Update Blog...</h1>
+            <h1>add Categories</h1>
 
         </div>
         </section><!-- End Breadcrumbs -->
 
         <section class="inner-page">
         <div class="container"><br>
-            
             <div class="form-control" style="width: 50vw;">
 
                 <form method="POST">
@@ -27,18 +27,18 @@
                     {{ form.as_p }}
                     
                     <button class="btn btn-primary">
-                        Update
+                        submit
                         <i class="bi bi-box-arrow-up"></i>
+                    </button>
+                    <button class="btn btn-primary">
+
+                        <a href="#" style="color: white;">Share <i class="bi bi-share"></i></a>
                     </button>
                 </form>
             </div>
-            <button class="btn btn-primary mt-4">
-
-                <a href="{% url 'categories' %}" style="color: white;">Add Categories <i class="bi bi-cloud-plus"></i></a>
-            </button>
         
         </div>
         </section>
 
     </main><!-- End #main -->
-{% endblock %}
+    {% endblock %}

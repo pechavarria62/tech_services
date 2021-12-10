@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from .models import features, post
+from .models import features, post, Category
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # uncomment EditForm to make it work.
 from .forms import PostForm # ,EditForm 
@@ -69,6 +69,11 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
+# return posts by category
+def CategoryView(request, cats):
+    category_posts = post.objects.filter(category=cats.replace('-,_',' '))
+    return render(request, 'pCategories.html', {'cats': cats.title().replace('-', ' '), 'category_posts':category_posts.replace('-',' ')})
+
 
 # show a list of all posts
 class postView(ListView):
@@ -76,7 +81,7 @@ class postView(ListView):
     template_name = "bList.html"
 
 # Return selected post.
-class blogView(DetailView):
+class blogView(DetailView ):
     model = post
     template_name = "bPosts.html"
 
@@ -86,6 +91,13 @@ class addPosts(CreateView):
     form_class = PostForm
     template_name = "bEditor.html"
     # fields = '__all__'
+
+# add a Category
+class addCategory(CreateView):
+    model = Category
+    # form_class = PostForm
+    template_name = "categories.html"
+    fields = '__all__'
 
 # Edit Posts
 class EditPosts(UpdateView):

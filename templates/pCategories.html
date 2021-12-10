@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block header %}fixed-top header-inner-pages{% endblock %}
+{% block title%}Blog List{% endblock %}
+{% block menu %}{% endblock %}
+{% load static %}
+
+    {% block content %}
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <ol style="padding-top: 9px;"></ol>
+            
+            <h2>{{cats}}</h2>
+
+            
+            </div>
+        </section><!-- End Breadcrumbs -->
+
+        <section id="team" class="inner-page">
+            {% csrf_token %}
+
+            {% if category_posts %}
+                {% for post in category_posts reversed %}
+                    <div class="col-lg-6 pb-4  content team row">
+                        <div  class="member d-flex align-items-start team section-bg " data-aos="zoom-in" data-aos-delay="100">
+                            <div class="pic"><img src="{% static 'assets/img/team/yo.jpeg' %}" class="img-fluid" alt=""></div>
+                            <div class="member-info">
+                                <h2>{{post.title}}</h2>
+                                <h6>{{post.created_at}}</h6>
+                                <h6>{{post.category}}</h6>
+                                <p>{{post.body|truncatewords:14|safe}}</p><br>
+                                <h4>by {{post.author}}</h4>
+                                <a href="{% url 'bPosts' post.pk %}">Read more...</a>
+                                <!-- <div class="social">
+                                    <a href=""><i class="ri-twitter-fill"></i></a>
+                                    <a href=""><i class="ri-facebook-fill"></i></a>
+                                    <a href=""><i class="ri-instagram-fill"></i></a>
+                                    <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h1>Sorry no category posts here... <a href="{% url 'bList' %}">Go Back <i class="bi bi-arrow-bar-left"></i></a></h1>
+            {% endif %}
+            
+        </section>
+
+    </main><!-- End #main -->
+{% endblock %}
