@@ -71,14 +71,22 @@ def logout(request):
 
 # return posts by category
 def CategoryView(request, cats):
-    category_posts = post.objects.filter(category=cats.replace('-,_',' '))
-    return render(request, 'pCategories.html', {'cats': cats.title().replace('-', ' '), 'category_posts':category_posts.replace('-',' ')})
+    category_posts = post.objects.filter(category=cats)
+    return render(request, 'pCategories.html', {'cats': cats.title(), 'category_posts':category_posts})
 
 
 # show a list of all posts
 class postView(ListView):
     model = post
     template_name = "bList.html"
+    cats = Category.objects.all()
+
+
+    def get_context_data(self, *args, **kwargs ):
+        cat_menu = Category.objects.all()
+        context = super(postView, self).get_context_data(*args, **kwargs)
+        context["cat_menu"] = cat_menu
+        return context
 
 # Return selected post.
 class blogView(DetailView ):
