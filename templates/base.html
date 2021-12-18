@@ -165,14 +165,14 @@
             {% if user.is_authenticated %}
             <li class="dropdown getstarted"><a>{{user.username}}<i style="font-size: 23px;" class="bi bi-chevron-down"></i></a>
               <ul>
-                {% if User.username == pechavarria62 %}
+                <!-- if user id is the same as admin user then show editor and admin panel 
+                else only show logout  -->
                 <li><a href="{% url 'logout' %}">Logout</i></a></li>
                 <li><a href="{% url 'bEditor' %}">Blog Editor</a></li>
+                {% if user.id == 1 %}
                 <li><a href="http://127.0.0.1:8000/admin">Admin Panel</a></li>
-                {% elif User != pechavarria62 %}
-                <li><a href="{% url 'logout' %}">Logout</i></a></li>
-                {% else %}
-                <p>me voy coño</p>
+                <!-- {% elif user.id != 1 %} 
+                  <li><a href="{% url 'logout' %}">Logout</i></a></li> -->
                 
                 {% endif%}
 
