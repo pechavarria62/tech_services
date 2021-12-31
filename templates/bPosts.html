@@ -38,8 +38,17 @@
                       <a href="{% url 'bList' %}">Back <i class="bi bi-arrow-left-square"></i></a>
                     </button>
                     
-                    <button class="btn btn-primary">
+                    <form action="{% url 'blog_likes' post.pk %}" method="post">
+                      {% csrf_token %}
+
+                      <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary">
+                        
+                        <a href=""><i class="bi bi-hand-thumbs-up"></i></a>
+                      </button>
                       
+                    </form>
+                    <button class="btn btn-primary">
+                    
                       <a href="{% url 'bUpdate' post.pk %}">Share <i class="bi bi-share"></i></a>
                     </button>
                     

@@ -33,6 +33,7 @@ class post(models.Model):
     body = models.TextField()
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     category = models.CharField(max_length=200, default="")
+    likes = models.ManyToManyField(User, related_name='blog_likes')
 
     # show title
     def __str__(self):

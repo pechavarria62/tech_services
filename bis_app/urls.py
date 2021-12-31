@@ -3,7 +3,7 @@
 
 from django.urls import path
 from . import views
-from .views import postView, blogView, addPosts, EditPosts, DeletePosts, addCategory, CategoryView
+from .views import postView, blogView, addPosts, EditPosts, DeletePosts, addCategory, CategoryView, LikesView
 
 urlpatterns = [
 
@@ -39,4 +39,8 @@ urlpatterns = [
 
     # Edit blog post
     path('Dposts/<int:pk>/remove', DeletePosts.as_view(), name='Dposts'),
+
+    # Likes
+    path('blog_likes/<int:pk>', LikesView, name='blog_likes'),
+
 ]

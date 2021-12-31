@@ -1,15 +1,15 @@
 # In this file you'll write the code so views.py can display them
 # *******************************************************************************
 
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_list_or_404
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .models import features, post, Category
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # uncomment EditForm to make it work.
 from .forms import PostForm # ,EditForm 
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 
 # Create your views here.
@@ -119,6 +119,14 @@ class DeletePosts(DeleteView):
     model = post
     template_name = "Dposts.html"
     success_url = reverse_lazy('bList')
+
+# Posts Likes
+def LikesView(request, pk):
+    Post = get_list_or_404(post, id=request.POST.get('post_id'))
+    Post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('bPosts', args=[str(pk)]))
+
+
 
 
 

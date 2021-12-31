@@ -36,6 +36,13 @@
                     </button>
                 </form>
             </div>
+            <!-- Add the author name automatically  -->
+            <script>
+                let firstName = "{{user.first_name }} {{user.last_name}}";
+                document.getElementById("author").value = firstName ;
+            </script> <!-- End of author auto fill -->
+            
+
             <button class="btn btn-primary mt-4">
 
                 <a href="{% url 'categories' %}" style="color: white;">Add Categories <i class="bi bi-cloud-plus"></i></a>
