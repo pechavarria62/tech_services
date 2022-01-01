@@ -35,6 +35,9 @@ class post(models.Model):
     category = models.CharField(max_length=200, default="")
     likes = models.ManyToManyField(User, related_name='blog_likes')
 
+    def total_likes(self):
+        return self.likes.count()
+
     # show title
     def __str__(self):
         return self.title + ' | ' + str(self.author)

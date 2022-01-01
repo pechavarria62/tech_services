@@ -1,7 +1,7 @@
 # In this file you'll write the code so views.py can display them
 # *******************************************************************************
 
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
@@ -85,13 +85,28 @@ class postView(ListView):
     def get_context_data(self, *args, **kwargs ):
         cat_menu = Category.objects.all()
         context = super(postView, self).get_context_data(*args, **kwargs)
+
+        likitos = get_object_or_404(post, id=self.kwargs['pk'])
+        total_likes = likitos.total_likes()
         context["cat_menu"] = cat_menu
+        context["total_likes"] = total_likes
         return context
 
 # Return selected post.
 class blogView(DetailView ):
     model = post
     template_name = "bPosts.html"
+
+
+    def get_context_data(self, *args, **kwargs ):
+        cat_menu = Category.objects.all()
+        context = super(postView, self).get_context_data(*args, **kwargs)
+
+        likitos = get_object_or_404(post, id=self.kwargs['pk'])
+        total_likes = likitos.total_likes()
+        context["cat_menu"] = cat_menu
+        context["total_likes"] = total_likes
+        return context
 
 # Add a post from a HTML page 
 class addPosts(CreateView):
@@ -122,7 +137,7 @@ class DeletePosts(DeleteView):
 
 # Posts Likes
 def LikesView(request, pk):
-    Post = get_list_or_404(post, id=request.POST.get('post_id'))
+    Post = get_object_or_404(post, id=request.POST.get('post_id'))
     Post.likes.add(request.user)
     return HttpResponseRedirect(reverse('bPosts', args=[str(pk)]))
 
