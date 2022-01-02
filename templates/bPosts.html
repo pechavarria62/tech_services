@@ -41,11 +41,20 @@
                     <form action="{% url 'blog_likes' post.pk %}" method="post">
                       {% csrf_token %}
 
-                      <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary">
-                        
-                        <a href=""><i class="bi bi-hand-thumbs-up"></i>  </a>{{ total_likes }}
-                      </button>
-                      
+                        {% if user.is_authenticated %}
+                          {% if liked %}
+
+                            <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-danger">
+                              
+                              <a href=""><i class="bi bi-hand-thumbs-down"></i> {{total_likes}}</a>
+                            </button>
+                          {% else %}
+                            <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary">
+                              
+                              <a href=""><i class="bi bi-hand-thumbs-up"></i> {{total_likes}}</a>
+                            </button>
+                          {% endif %}
+                        {% endif %}
                     </form>
                     <button class="btn btn-primary">
                     
@@ -95,6 +104,7 @@
                 <p>{{post.category}}</p>
                 
               </div>
+              <br>
               <div class="portfolio-info">
                 <h3>Comments</h3>
                 
@@ -107,6 +117,7 @@
                 <button class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i></button>
                 <button class="btn btn-primary"><i class="bi bi-arrow-right-circle"></i></button>
               </div>
+              <br>
               <!-- ======= Star Reting Section ======= -->
               <div class="portfolio-info">
                 <h3>Ratings</h3>

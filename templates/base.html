@@ -167,6 +167,7 @@
               <ul>
                 <li><a href="{% url 'logout' %}">Logout</i></a></li>
                 <li><a href="{% url 'bEditor' %}">Blog Editor</a></li>
+                <li><a href="{% url 'editProfile' %}">Settings</a></li>
 
                 <!-- If User is Admin Then show admin panel-->
                 {% if user.id == 1 %} 

@@ -47,6 +47,7 @@
                             <p>{{post.body|truncatewords:14|safe}}</p><br>
                             <h4>by: {{post.author.first_name}}&nbsp;{{post.author.last_name}}</h4>
                             <a href="{% url 'bPosts' post.pk %}">Read more...</a>
+                            <p>{{ post.snippet }}</p>
                             <!-- <div class="social">
                                 <a href=""><i class="ri-twitter-fill"></i></a>
                                 <a href=""><i class="ri-facebook-fill"></i></a>

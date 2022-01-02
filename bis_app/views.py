@@ -5,11 +5,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+# from django.views.generic.detail import T
 from .models import features, post, Category
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # uncomment EditForm to make it work.
 from .forms import PostForm # ,EditForm 
 from django.urls import reverse_lazy, reverse
+
+
 
 
 # Create your views here.
@@ -75,6 +78,18 @@ def CategoryView(request, cats):
     return render(request, 'pCategories.html', {'cats': cats.title(), 'category_posts':category_posts})
 
 
+# Posts Likes & Dislikes
+def LikesView(request, pk):
+    Post = get_object_or_404(post, id=request.POST.get('post_id'))
+    liked = False
+    if Post.likes.filter(id=request.user.id).exists():
+        Post.likes.remove(request.user)
+        liked = False
+    else:
+        Post.likes.add(request.user)
+        liked = True
+    return HttpResponseRedirect(reverse('bPosts', args=[str(pk)]))
+
 # show a list of all posts
 class postView(ListView):
     model = post
@@ -84,12 +99,8 @@ class postView(ListView):
 
     def get_context_data(self, *args, **kwargs ):
         cat_menu = Category.objects.all()
-        context = super(postView, self).get_context_data(*args, **kwargs)
-
-        likitos = get_object_or_404(post, id=self.kwargs['pk'])
-        total_likes = likitos.total_likes()
+        context = super(postView, self).get_context_data(*args, **kwargs)        
         context["cat_menu"] = cat_menu
-        context["total_likes"] = total_likes
         return context
 
 # Return selected post.
@@ -100,12 +111,19 @@ class blogView(DetailView ):
 
     def get_context_data(self, *args, **kwargs ):
         cat_menu = Category.objects.all()
-        context = super(postView, self).get_context_data(*args, **kwargs)
+        context = super(blogView, self).get_context_data(*args, **kwargs)
 
         likitos = get_object_or_404(post, id=self.kwargs['pk'])
         total_likes = likitos.total_likes()
+
+        liked = False
+
+        if likitos.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
         context["cat_menu"] = cat_menu
         context["total_likes"] = total_likes
+        context["liked"] = liked
         return context
 
 # Add a post from a HTML page 
@@ -135,11 +153,7 @@ class DeletePosts(DeleteView):
     template_name = "Dposts.html"
     success_url = reverse_lazy('bList')
 
-# Posts Likes
-def LikesView(request, pk):
-    Post = get_object_or_404(post, id=request.POST.get('post_id'))
-    Post.likes.add(request.user)
-    return HttpResponseRedirect(reverse('bPosts', args=[str(pk)]))
+
 
 
 
