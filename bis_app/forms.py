@@ -20,7 +20,7 @@ for item in choices:
 class PostForm(forms.ModelForm):
     class Meta:
         model = post
-        fields = ('title', 'author', 'category', 'body', 'snippet', 'created_at')
+        fields = ('title', 'author', 'category', 'body', 'snippet', 'created_at', 'header_image')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),

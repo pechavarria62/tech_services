@@ -20,9 +20,9 @@
 
         <section class="inner-page">
         <div class="container"><br>
-            <div class="form-control" style="width: 55vw;">
+            <div class="form-control" style="width: 69vw;">
 
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.media }}
                     {{ form.as_p }}
