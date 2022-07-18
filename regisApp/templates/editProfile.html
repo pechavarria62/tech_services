@@ -15,15 +15,16 @@
             <ol style="padding-top: 9px;"></ol>
 
             
-            <h1>Profile Update Page</h1>
-
+            <h1>Profile Update Page</h1> <br>
+            
         </div>
-        </section><!-- End Breadcrumbs -->
-
-        <section class="inner-page">
+    </section><!-- End Breadcrumbs -->
+    
+    <section class="inner-page">
+        {{ user.profile.bio }}
         <div class="container"><br>
             <div class="form-control" style="width: 31vw;">
-
+                
                 <form method="POST">
                     {% csrf_token %}
                     {{ form.as_p }}

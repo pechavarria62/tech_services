@@ -31,6 +31,10 @@
                   {% csrf_token %}
                   
                   <h2>{{post.title}}</h2> <br>
+                  {% if post.header_image %}
+                    <image src= "{{ post.header_image.url }}" style="width: 31vw;"></image>
+                  {% endif %}
+                  <br><br>
                   <p>{{post.body| safe}}</p>
                   <div class="backAndEdit remove">
                     <button class="btn btn-primary">

@@ -2,6 +2,7 @@
 # page remember to got to the Admin file and import the class name you made.
 # *******************************************************************************
 from distutils.command.upload import upload
+from turtle import ondrag
 from django.db import models
 from django.db.models.fields import CharField
 from datetime import datetime, date
@@ -25,6 +26,14 @@ class Category(models.Model):
     
     def get_absolute_url(self):
         return reverse('bList')
+
+#make a one to one field 
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField()
+
+    def __str__(self):
+        return str(self.user)
 
 
 # make blog posts

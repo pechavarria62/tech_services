@@ -3,7 +3,7 @@
 {% block title%}Blog Editor{% endblock %}
 {% load static %}
 {% block menu %}{% endblock %}
-
+Here is where the blog editor is locates 
 
     {% block content %}
     <main id="main">
@@ -14,7 +14,7 @@
             <ol style="padding-top: 9px;"></ol>
             
             <h1>Blog Editor!</h1>
-
+            
         </div>
         </section><!-- End Breadcrumbs -->
 
@@ -24,7 +24,7 @@
 
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.media }}
+                    {{ form.media }} 
                     {{ form.as_p }}
                     
                     <button class="btn btn-primary">
