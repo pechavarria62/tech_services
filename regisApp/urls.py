@@ -6,7 +6,7 @@
 # *******************************************************************************
 
 from django.urls import path
-from .views import UserRegisterView, UserEditView, PasswordChangeView
+from .views import UserRegisterView, UserEditView, PasswordChangeView, ProfilePageView
 from django.contrib.auth import views as auth_views
 from . import views
 
@@ -24,6 +24,9 @@ urlpatterns = [
 
     # to make a success page i think
     path('password_success', views.password_success, name="password_success"),
+
+    # Profile page path
+    path('<int:pk>/profile', ProfilePageView.as_view(), name="ProfilePage"),
 
     
     
