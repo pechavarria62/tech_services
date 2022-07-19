@@ -3,7 +3,10 @@ from django.views import generic
 from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm, UserChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
+
+from bis_app.models import Profile
 from .forms import SignUpForm, EditProfileForm
+from django.views.generic import DetailView
 
 # Create your views here.
 
@@ -34,3 +37,7 @@ class UserEditView(generic.UpdateView):
 
     def get_object(self):
         return self.request.user
+
+class ProfilePageView(DetailView):
+    model = Profile
+    template_name = "templates/user_profile.html"

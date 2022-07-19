@@ -2,6 +2,8 @@
 {% block header %}fixed-top header-inner-pages{% endblock %}
 {% block title%}Blog Posts{% endblock %}
 {% block menu %}{% endblock %}
+{% block pro-pic %}{% endblock %}
+
 {% load static %}
 
     {% block content %}
@@ -100,7 +102,63 @@
               <div class="portfolio-info">
                 <h3>Posts Details</h3>
                 <h6>Author: </h6>
-                <p>{{post.author.first_name}}&nbsp;{{post.author.last_name}}</p>
+                <div class="card mb-3" style="max-width: 290px;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      {% if post.author.profile.profile_pic %}
+                        <img src="{{ post.author.profile.profile_pic.url }}" class="img-fluid rounded-start" alt="...">
+                      {% else %}
+                      <i class="bi bi-person" style="width: 80px; height: 80px;"></i>
+                      {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{post.author.first_name}}&nbsp;{{post.author.last_name}}</h5>
+
+                        {% if post.author.profile.twitter_url%}
+                          <a href="" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        {% endif %}
+
+                        {% if post.author.profile.facebook_url%}
+                          <a href="{{ post.author.profile.facebook_url }}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                        {% endif %}
+
+                        {% if post.author.profile.instagram_url%}
+                          <a href="{{ post.author.profile.instagram_url }}" class="instagram"><i class="bx bxl-instagram"></i></a>
+                        {% endif %}
+
+                        {% if post.author.profile.skype_url%}
+                          <a href="{{ post.author.profile.skype_url }}" class="google-plus"><i class="bx bxl-skype"></i></a>
+                        {% endif %}
+
+                        {% if post.author.profile.github_url%}
+                        <a href="{{ post.author.profile.github_url }}" class="linkedin"><i class="bx bxl-github"></i></a>
+                        {% endif %}
+
+                        {% if post.author.profile.linkedin_url%}
+                          <a href="{{ post.author.profile.linkedin_url }}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        {% endif %}
+
+                        {% if post.author.profile.youtube_url%}
+                        <a href="{{ post.author.profile.youtube_url }}" class="linkedin"><i class="bx bxl-youtube"></i></a>
+                        {% endif %}
+
+                        {% if post.author.profile.website_url%}
+                          <a href="{{ post.author.profile.website_url }}" class="linkedin"><i class="bi bi-rss"></i></a>
+                        {% endif %}
+                        
+                        <p class="card-text">{{ post.author.profile.bio }}</p>
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <p>
+                  <img 
+                    src="{{ post.author.profile.profile_pic.url }}" width=60 height=60 >
+                  </img>
+                  &nbsp;{{post.author.first_name}}&nbsp;{{post.author.last_name}}
+                </p> -->
                 <!-- <h6>Author2: {{user.firstname}}</h6> -->
                 <h6>Date: </h6>
                 <p>{{post.created_at}}</p>

@@ -120,7 +120,7 @@
                 </div>
               </a>
             </li>
-            {% endblock%}
+            {% endblock %}
             <li>
               <a class="nav-link scrollto" href="{% url 'bList' %}">
                 <div class="hiddnTxt">
@@ -161,30 +161,31 @@
                 </div>
               </a>
             </li>
-            {% block reg %}
+            {% block pro-pic %}
             {% if user.is_authenticated %}
-            <li class="dropdown getstarted"><a>{{user.username}}<i style="font-size: 23px;" class="bi bi-chevron-down"></i></a>
-              <ul>
-                <li><a href="{% url 'logout' %}">Logout</i></a></li>
-                <li><a href="{% url 'bEditor' %}">Blog Editor</a></li>
-                <li><a href="{% url 'editProfile' %}">Settings</a></li>
+              <li class="dropdown "><a><img src="{{ post.author.profile.profile_pic.url }}" width=30 height=30 class="rounded-circle"><i style="font-size: 23px;" class="bi bi-chevron-down"></i></a>
+              <!-- <li class="dropdown getstarted"><a>{{user.username}}<i style="font-size: 23px;" class="bi bi-chevron-down"></i></a> -->
+                <ul>
+                  <li><a href="{% url 'logout' %}">Logout</i></a></li>
+                  <li><a href="{% url 'bEditor' %}">Blog Editor</a></li>
+                  <li><a href="{% url 'editProfile' %}">Settings</a></li>
 
-                <!-- If User is Admin Then show admin panel-->
-                {% if user.id == 1 %} 
-                <li><a href="http://127.0.0.1:8000/admin">Admin Panel</a></li>
-                
-                {% endif%}
+                  <!-- If User is Admin Then show admin panel-->
+                  {% if user.id == 1 %} 
+                  <li><a href="http://127.0.0.1:8000/admin">Admin Panel</a></li>
+                  
+                  {% endif%}
 
-              </ul>
+                </ul>
 
-            </li>
-            {% else %}
-            <li class="dropdown"><a href="#"><i style="font-size: 23px;"class="bi bi-person"></i><i style="font-size: 23px;" class="bi bi-chevron-down"></i></a>
-              <ul>
-                <li><a href="{% url 'login' %}">Sign in</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li>
-              </ul>
-            </li>
+              </li>
+              {% else %}
+              <li class="dropdown"><a href="#"><i style="font-size: 23px;"class="bi bi-person"></i><i style="font-size: 23px;" class="bi bi-chevron-down"></i></a>
+                <ul>
+                  <li><a href="{% url 'login' %}">Sign in</a></li>
+                  <li><a href="{% url 'register' %}">Register</a></li>
+                </ul>
+              </li>
             {% endif %}
             {% endblock %}
             
