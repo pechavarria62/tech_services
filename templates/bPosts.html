@@ -75,7 +75,7 @@
                       
                       <button class="btn btn-danger">
                         
-                          <a class="remove" href="{% url 'Dposts' post.pk %}">Remove <i class="bi bi-trash"></i></a>
+                          <a class="remove" href="{% url 'Deleteposts' post.pk %}">Remove <i class="bi bi-trash"></i></a>
                         </button>
                     {% endif %}
                   </div>
@@ -114,6 +114,7 @@
                     <div class="col-md-8">
                       <div class="card-body">
                         <h5 class="card-title">{{post.author.first_name}}&nbsp;{{post.author.last_name}}</h5>
+                        <a href=" {% url 'ProfilePage' post.author.profile.id %} ">Profile Page</a> <br>
 
                         {% if post.author.profile.twitter_url%}
                           <a href="" class="twitter"><i class="bx bxl-twitter"></i></a>

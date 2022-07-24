@@ -6,7 +6,7 @@
 # *******************************************************************************
 
 from django.urls import path
-from .views import UserRegisterView, UserEditView, PasswordChangeView, ProfilePageView
+from .views import UserRegisterView, UserEditView, PasswordChangeView, ProfilePageView, editProfilePage
 from django.contrib.auth import views as auth_views
 from . import views
 
@@ -27,6 +27,9 @@ urlpatterns = [
 
     # Profile page path
     path('<int:pk>/profile', ProfilePageView.as_view(), name="ProfilePage"),
+
+    # Profile edit page path
+    path('<int:pk>/profile_Editor/', editProfilePage.as_view(), name="profileEditor"),
 
     
     

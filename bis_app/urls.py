@@ -22,7 +22,7 @@ urlpatterns = [
     # show posts by category
     path('pCategories/<str:cats>/', CategoryView, name='pCategories'),
 
-    # register user but bitch not working all of a sunden. 
+    # register user but bitch not working all of a sudden. 
     # path('register/', views.register, name='register'),
 
     # Login user.
@@ -41,7 +41,7 @@ urlpatterns = [
     path('bUpdate/edit/<int:pk>', EditPosts.as_view(), name='bUpdate'),
 
     # Edit blog post
-    path('Dposts/<int:pk>/remove', DeletePosts.as_view(), name='Dposts'),
+    path('Deleteposts/<int:pk>/remove', DeletePosts.as_view(), name='Deleteposts'),
 
     # Likes
     path('blog_likes/<int:pk>', LikesView, name='blog_likes'),

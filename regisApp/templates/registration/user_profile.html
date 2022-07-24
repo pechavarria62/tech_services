@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block header %}fixed-top header-inner-pages{% endblock %}
+{% block title%}User Page{% endblock %}
+{% load static %}
+
+    {% block content %}
+        <main id="main">
+    
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <ol style="padding-top: 9px;"></ol>
+
+            
+            <h1>User Page</h1>
+
+        </div>
+        </section><!-- End Breadcrumbs -->
+
+        <section class="inner-page">
+        <div class="container"><br>
+            <div class="form-control" style="width: 50vw;">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ page_user }} <br>
+                    <div class="card mb-3" style="max-width: 390px;">
+                        <div class="row g-0">
+                        <div class="col-md-4">
+                            {% if page_user.profile_pic %}
+                            <img src="{{ page_user.profile_pic.url }}" class="img-fluid rounded-start" alt="...">
+                            {% else %}
+                            <i class="bi bi-person" style="width: 80px; height: 80px;"></i>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                            <h5 class="card-title">{{page_user.user.first_name}}&nbsp;{{page_user.user.last_name}}</h5>
+                                
+                            {% if page_user.twitter_url%}
+                                <a href="" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            {% endif %}
+    
+                            {% if page_user.facebook_url%}
+                                <a href="{{ page_user.facebook_url }}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            {% endif %}
+    
+                            {% if page_user.instagram_url%}
+                                <a href="{{page_user.instagram_url }}" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            {% endif %}
+    
+                            {% if page_user.skype_url%}
+                                <a href="{{ page_user.skype_url }}" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            {% endif %}
+    
+                            {% if page_user.github_url%}
+                            <a href="{{ page_user.github_url }}" class="linkedin"><i class="bx bxl-github"></i></a>
+                            {% endif %}
+    
+                            {% if page_user.linkedin_url%}
+                                <a href="{{ page_usere.linkedin_url }}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                            {% endif %}
+    
+                            {% if page_user.youtube_url%}
+                            <a href="{{ page_user.youtube_url }}" class="linkedin"><i class="bx bxl-youtube"></i></a>
+                            {% endif %}
+    
+                            {% if page_user.website_url%}
+                                <a href="{{ page_user.website_url }}" class="linkedin"><i class="bi bi-rss"></i></a>
+                            {% endif %}
+                            
+                            <p class="card-text">{{ page_user.bio }}</p>
+                            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <!-- <button class="btn btn-primary">
+                        submit
+                        <i class="bi bi-box-arrow-up"></i>
+                    </button> -->
+                    <!-- <p>
+                        have an account? <a href="{% url 'login' %}"> login here...</a>
+                    </p> -->
+                </form>
+            </div>
+        
+        </div>
+        </section>
+
+    </main><!-- End #main -->
+    {% endblock %}

@@ -7,7 +7,8 @@ from bis_app.models import Profile
 from .forms import SignUpForm, EditProfileForm
 from django.views.generic import DetailView
 
-# Create your views here.
+# Create your views here, all the HTML files made here goes in the regisApp templates
+# section
 
 
 # Password change page.
@@ -31,7 +32,7 @@ class UserRegisterView(generic.CreateView):
 # Edit user info.
 class UserEditView(generic.UpdateView):
     form_class = EditProfileForm
-    template_name = 'editProfile.html'
+    template_name = 'registration/editProfile.html'
     success_url = reverse_lazy('home')
 
     def get_object(self):
@@ -39,7 +40,7 @@ class UserEditView(generic.UpdateView):
 
 class ProfilePageView(DetailView):
     model = Profile
-    template_name = "templates/user_profile.html"
+    template_name = "registration/user_profile.html"
 
     def get_context_data(self, *args, **kwargs ):
         users_profile = Profile.objects.all()
@@ -47,3 +48,12 @@ class ProfilePageView(DetailView):
         page_user = get_object_or_404(Profile, id=self.kwargs['pk'])  
         context["page_user"] = page_user
         return context
+
+class editProfilePage(generic.UpdateView):
+    model = Profile
+    template_name = "registration/profileEditor.html"
+    fields = [
+        'bio', 'profile_pic', 'website_url', 'facebook_url', 'instagram_url', 'github_url'
+    ]
+    success_url = reverse_lazy('home')
+

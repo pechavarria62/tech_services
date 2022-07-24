@@ -150,7 +150,7 @@ class EditPosts(UpdateView):
 
 class DeletePosts(DeleteView):
     model = post
-    template_name = "Dposts.html"
+    template_name = "Deleteposts.html"
     success_url = reverse_lazy('bList')
 
 

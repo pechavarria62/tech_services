@@ -1,0 +1,42 @@
+<!-- Here is the blog editor page  -->
+
+
+{% extends 'base.html' %}
+{% block header %}fixed-top header-inner-pages{% endblock %}
+{% block title%}Profile Editor{% endblock %}
+{% load static %}
+{% block menu %}{% endblock %}
+
+    {% block content %}
+    <main id="main">
+    
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <ol style="padding-top: 9px;"></ol>
+            
+            <h1>Profile Editor!</h1>
+            
+        </div>
+        </section><!-- End Breadcrumbs -->
+
+        <section class="inner-page">
+            <div class="container"><br>
+                <div class="form-control" style="width: 69vw;">
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        
+                        <button class="btn btn-primary">
+                            submit
+                            <i class="bi bi-box-arrow-up"></i>
+                        </button>
+                        
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+    {% endblock %}
