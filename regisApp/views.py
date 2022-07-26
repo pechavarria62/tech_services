@@ -4,8 +4,9 @@ from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm, User
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from bis_app.models import Profile
-from .forms import SignUpForm, EditProfileForm
-from django.views.generic import DetailView
+from .forms import SignUpForm, EditProfileForm, ProfilePageForm
+from django.views.generic import DetailView, CreateView
+
 
 # Create your views here, all the HTML files made here goes in the regisApp templates
 # section
@@ -38,6 +39,7 @@ class UserEditView(generic.UpdateView):
     def get_object(self):
         return self.request.user
 
+# 
 class ProfilePageView(DetailView):
     model = Profile
     template_name = "registration/user_profile.html"
@@ -56,4 +58,15 @@ class editProfilePage(generic.UpdateView):
         'bio', 'profile_pic', 'website_url', 'facebook_url', 'instagram_url', 'github_url'
     ]
     success_url = reverse_lazy('home')
+
+class CreateProfilePage(CreateView):
+    model = Profile
+    form_class = ProfilePageForm
+    template_name = "registration/CreateProfile.html"
+    # fields = '__all__'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 

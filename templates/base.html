@@ -171,7 +171,11 @@
                 <ul>
                   <li><a href="{% url 'logout' %}">Logout</i></a></li>
                   <li><a href="{% url 'bEditor' %}">Blog Editor</a></li>
-                  <li><a href="{% url 'profileEditor' pk=user.pk%}">Edit Profile</a></li>
+                  {% if user.profile.id %}
+                    <li><a href="{% url 'profileEditor' user.profile.id %}">Edit Profile</a></li>
+                  {% else %}
+                    <li><a href="{% url 'profileCreator' %}">Create Profile</a></li>
+                  {% endif %}
                   <li><a href="{% url 'editProfile' %}">Settings</a></li>
 
                   <!-- If User is Admin Then show admin panel-->
@@ -179,7 +183,7 @@
                   <li><a href="http://127.0.0.1:8000/admin">Admin Panel</a></li>
                   
                   {% endif%}
-
+                  <!-- pk=user.pk -->
                 </ul>
 
               </li>

@@ -2,7 +2,6 @@
 {% block header %}fixed-top header-inner-pages{% endblock %}
 {% block title%}Blog Posts{% endblock %}
 {% block menu %}{% endblock %}
-{% block pro-pic %}{% endblock %}
 
 {% load static %}
 
@@ -168,19 +167,55 @@
                 
               </div>
               <br>
-              <div class="portfolio-info">
-                <h3>Comments</h3>
+              <div class="portfolio-info form-control" style="width: 33vw;">
+                <h3 style="border-bottom: 1px solid black;">Comments & Ratings</h3>
+                {% if not post.comments.all %}
+                  <h6>No Comments Yet...</h6><a href="#" >Add One</a>
+                {% else %}
+                  {% for comment in post.comments.all %}
+                    <div class="commentos" style="
+                      display: flex;
+                      justify-content: space-between;
+                    "
+                    >
+                      <div class="title">
+
+                        <h5>{{ comment.title }} <br>
+                          <ul class="port-info " style=" margin-top: -2px; ">
+                            <li>
+                              <li><i class="bi bi-star-fill"></i></li>
+                              <li><i class="bi bi-star-fill"></i></li>
+                              <li><i class="bi bi-star-fill"></i></li>
+                              <li><i class="bi bi-star-fill"></i></li>
+                              <li><i class="bi bi-star-fill"></i></li>
+                            </li>
+                          </ul>
+                        </h5>
+                      </div>
+                      <div class="commentator">
+
+                        <strong>
+    
+                          {{ comment.name }}<br> 
+                          {{ comment.date_added }}
+    
+                        </strong><br>
+                      </div>
+
+                    </div>
+
+                    {{ comment.body }}
+                  {% endfor %}
+                  
+                {% endif %}
                 
-                <ul>
-                  <li><h4><strong>hearder</strong></h4> xd-y ago</li>
-                  <li><strong>Client</strong>: ASU Company</li>
-                  <li><strong>Project date</strong>: 01 March, 2020</li>
-                  <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-                </ul>
-                <button class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i></button>
-                <button class="btn btn-primary"><i class="bi bi-arrow-right-circle"></i></button>
               </div>
               <br>
+              <button class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i></button>
+              <button class="btn btn-primary"><i class="bi bi-arrow-right-circle"></i></button>
+              <br>
+              <br>
+              <a href="#"><i class="bi bi-pencil-square"></i>   Write a Review</a>
               <!-- ======= Star Reting Section ======= -->
               <div class="portfolio-info">
                 <h3>Ratings</h3>

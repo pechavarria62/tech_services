@@ -8,35 +8,43 @@
 {% block menu %}{% endblock %}
 
     {% block content %}
-    <main id="main">
-    
-        <!-- ======= Breadcrumbs ======= -->
-        <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container">
-            <ol style="padding-top: 9px;"></ol>
+    {% if user.is_authenticated %}
+        {% if user.id == profile.user.id %}
+            <main id="main">
             
-            <h1>Profile Editor!</h1>
-            
-        </div>
-        </section><!-- End Breadcrumbs -->
-
-        <section class="inner-page">
-            <div class="container"><br>
-                <div class="form-control" style="width: 69vw;">
-
-                    <form method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        
-                        <button class="btn btn-primary">
-                            submit
-                            <i class="bi bi-box-arrow-up"></i>
-                        </button>
-                        
-                    </form>
+                <!-- ======= Breadcrumbs ======= -->
+                <section id="breadcrumbs" class="breadcrumbs">
+                <div class="container">
+                    <ol style="padding-top: 9px;"></ol>
+                    
+                    <h1>Profile Editor!</h1>
+                    
                 </div>
-            </div>
-        </section>
+                </section><!-- End Breadcrumbs -->
 
-    </main><!-- End #main -->
+                <section class="inner-page">
+                    <div class="container"><br>
+                        <div class="form-control" style="width: 69vw;">
+
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                
+                                <button class="btn btn-primary">
+                                    submit
+                                    <i class="bi bi-box-arrow-up"></i>
+                                </button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+            </main><!-- End #main -->
+        {% else %}
+            <h1 style="padding-top: 89px;">Please sign in to the correct profile</h1>
+        {% endif %}
+    {% else %}
+    <h1 style="padding-top: 89px;">Please sign in to update your profile</h1>
+    {% endif %}
     {% endblock %}

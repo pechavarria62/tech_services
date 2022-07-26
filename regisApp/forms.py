@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 from django.db.models import fields
+from bis_app.models import Profile
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField()
@@ -26,3 +27,19 @@ class EditProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('email','username', 'first_name', 'last_name', 'password', 'last_login', 'date_joined', 'is_active')
+
+
+class ProfilePageForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('bio', 'profile_pic', 'website_url', 'facebook_url', 'instagram_url', 'github_url'  )
+        widgets = {
+
+            'bio': forms.Textarea(attrs={'class': 'form-control'}),
+            # 'profile_pic': forms.TextInput(attrs={'class': 'form-control', 'id': 'author'}),
+            'website_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'facebook_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'instagram_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'github_url': forms.TextInput(attrs={'class': 'form-control'}),
+
+        }
