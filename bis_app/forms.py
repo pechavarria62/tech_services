@@ -3,7 +3,7 @@
 
 # make imports 
 from django import forms
-from .models import post, Category
+from .models import Comments, post, Category
 
 # Add Category choices hard coded
 # choices = [('Sports','Sports'),('No Category','No Category'),('Food','Food'),('Veganism','Veganism')]
@@ -47,4 +47,15 @@ class PostForm(forms.ModelForm):
 #             'created_at': forms.TextInput(attrs={'class': 'form-control'}),
 
 #         }
+class CommentsForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = ('name', 'title', 'body')
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),            
+            'title': forms.TextInput(attrs={'class': 'form-control'}),            
+            'body': forms.Textarea(attrs={'class': 'form-control'}),
+
+        }
 

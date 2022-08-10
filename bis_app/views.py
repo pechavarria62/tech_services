@@ -6,10 +6,10 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 # from django.views.generic.detail import T
-from .models import features, post, Category
+from .models import features, post, Category, Comments
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # uncomment EditForm to make it work.
-from .forms import PostForm # ,EditForm 
+from .forms import PostForm, CommentsForm # ,EditForm 
 from django.urls import reverse_lazy, reverse
 
 
@@ -151,6 +151,17 @@ class EditPosts(UpdateView):
 class DeletePosts(DeleteView):
     model = post
     template_name = "Deleteposts.html"
+    success_url = reverse_lazy('bList')
+
+class addComments(CreateView):
+    model = Comments
+    form_class = CommentsForm
+    template_name = "comments.html"
+    
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+
     success_url = reverse_lazy('bList')
 
 

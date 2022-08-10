@@ -1,9 +1,7 @@
 <!-- Here is the blog editor page  -->
-
-
 {% extends 'base.html' %}
-{% block header %}fixed-top header-inner-pages{% endblock %}
-{% block title%}Blog Editor{% endblock %}
+{% block header %}Review{% endblock %}
+{% block title%}Review page{% endblock %}
 {% load static %}
 {% block menu %}{% endblock %}
 
@@ -15,7 +13,7 @@
         <div class="container">
             <ol style="padding-top: 9px;"></ol>
             
-            <h1>Blog Editor!</h1>
+            <h1>Add a Review</h1>
             
         </div>
         </section><!-- End Breadcrumbs -->
@@ -26,31 +24,15 @@
 
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.media }} 
                     {{ form.as_p }}
                     
                     <button class="btn btn-primary">
                         submit
                         <i class="bi bi-box-arrow-up"></i>
                     </button>
-                    <button class="btn btn-primary">
-
-                        <a href="#" style="color: white;">Share <i class="bi bi-share"></i></a>
-                    </button>
+                    
                 </form>
-            </div>
-            <!-- Add the author name automatically  -->
-            <script>
-                let firstName = "{{user.first_name }} {{user.last_name}}";
-                document.getElementById("author").value = firstName ;
-            </script> <!-- End of author auto fill -->
-            
-
-            <button class="btn btn-primary mt-4">
-
-                <a href="{% url 'categories' %}" style="color: white;">Add Categories <i class="bi bi-cloud-plus"></i></a>
-            </button>
-        
+            </div>        
         </div>
         </section>
 
