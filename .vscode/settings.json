@@ -9,5 +9,6 @@
     "Paem",
     "tooltiptext",
     "unico"
-  ]
+  ],
+  "python.analysis.typeCheckingMode": "basic"
 }
