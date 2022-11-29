@@ -3,7 +3,7 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
-from django.contrib.auth.models import User, auth
+from django.contrib.auth.models import User, auth  # type: ignore
 from django.contrib import messages
 # from django.views.generic.detail import T
 from .models import features, post, Category, Comments
