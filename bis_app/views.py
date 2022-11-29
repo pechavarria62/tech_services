@@ -21,7 +21,7 @@ def home(request):
     
     multipleFeatures = features.objects.all()
     
-    return render(request, 'home.html', {'features': multipleFeatures})
+    return render(request, 'index.html', {'features': multipleFeatures})
 
 # get user data & error messages
 def register(request):   
@@ -118,7 +118,7 @@ class blogView(DetailView ):
 
         liked = False
 
-        if likitos.likes.filter(id=self.request.user.id).exists():
+        if likitos.likes.filter(id=self.request.user.id).exists():  # type: ignore
             liked = True
 
         context["cat_menu"] = cat_menu
